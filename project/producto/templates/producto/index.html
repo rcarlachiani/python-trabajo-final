@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+  Productos | Hexagram Disquería
+{% endblock title %}
+
+{% block contenido %}
+  <div class="d-flex flex-column align-items-center mb-4">
+      <a class="btn btn-success w-50 mt-4 mb-4" href="{% url 'producto:categoria_create' %}">
+        Crear Categoría
+      </a>
+      <a class="btn btn-success mb-4 w-50" href="{% url 'producto:producto_create' %}">
+        Crear Producto
+      </a>
+  </div>
+  <div class="d-flex flex-column align-items-center w-100">
+    <h3>Buscar un producto</h3>
+    <form action="{% url 'producto:home' %}" method="get" class="d-flex w-100 justify-content-center ">
+      <input type="text" name="consulta" placeholder="Ingrese título o artista..." class="form-control w-25">
+    </form>
+  </div>
+  <div class="d-flex flex-column align-items-center mt-4">
+    {% if request.GET.consulta and productos %}
+      <h4>Resultados:</h4>
+      <table class="table">
+        <tr class="table-dark">
+          <th class="w-25">Nombre</th>
+          <th class="w-25">Precio</th>
+          <th class="w-25">Categoría</th>
+        </tr>
+        {% for producto in productos %}
+          <tr>
+            <td>{{producto.name}}</td>
+            <td>U$S{{producto.price}}</td>
+            <td>{{producto.category}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <a href="{% url 'producto:home' %}?limpiar" class="btn btn-dark ml-2">Limpiar búsqueda</a>
+    {% elif request.GET.consulta and not productos%}
+      <p>No se encontraron resultados.</p>
+    {% endif %}
+  </div>
+{% endblock contenido %}
