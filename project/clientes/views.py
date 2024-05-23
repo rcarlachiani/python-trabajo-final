@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.db.models import Q
 from core.forms import CustomUserChangeForm
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import login
 from . import models
 
 class StaffRequiredMixin(UserPassesTestMixin):
@@ -38,15 +39,14 @@ def home(request):
         return redirect('clientes:home')
     return render(request, 'clientes/index.html', context)
 
-class ClienteDetail(DetailView):
+class ClienteDetail(LoginRequiredMixin, StaffRequiredMixin, DetailView):
   model = models.Client
   context_object_name = 'cliente'
 
-class ClientUpdate(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = User
     form_class = CustomUserChangeForm
     template_name = 'clientes/client_form.html'
-    success_url = reverse_lazy('clientes:home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,4 +59,14 @@ class ClientUpdate(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
         if new_password:
             user.set_password(new_password)
         user.save()
+
+        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+        update_session_auth_hash(self.request, user) 
+
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        if self.request.user.is_staff:
+            return reverse_lazy('clientes:home')
+        else:
+            return reverse_lazy('core:home')

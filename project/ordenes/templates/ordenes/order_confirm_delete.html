@@ -1,16 +1,14 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
-Añadir Formato | Hexagram Disquería
+Dar de baja orden | Hexagram Disquería
 {% endblock title %}
 
 {% block contenido %}
-<div class="d-flex flex-column align-items-center border border-1 rounded-2 w-25 p-4 shadow-sm bg-light">
-  <h2 class="mb-3 fs-4">Añadir Formato</h2>
-  <form method="post" class="d-flex flex-column w-100">
+<div class="d-flex flex-column align-items-center w-100">
+  <h2 class="mb-3">¿Desea dar de baja la orden seleccionada?</h2>
+  <form method="post" class="d-flex flex-column w-25">
     {% csrf_token %}
-    {{ form.name.label }}{{ form.name }}
-    <div id="dateHelp" class="form-text">Boxset, LP, 7", 10", CD, Cassette, etc.</div>
     <div class="d-flex justify-content-center gap-3">
       <button type="submit" class="btn btn-success w-50 mt-4 d-flex justify-content-center align-items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle"
@@ -21,7 +19,7 @@ Añadir Formato | Hexagram Disquería
         </svg>
         Confirmar
       </button>
-      <a href="{% url 'catalogo:home' %}" type="button"
+      <a href="{% url 'ordenes:home' %}" type="button"
         class="btn btn-danger w-50 mt-4 d-flex justify-content-center align-items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
           viewBox="0 0 16 16">

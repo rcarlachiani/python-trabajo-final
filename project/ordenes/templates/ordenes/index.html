@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+{% if request.user.is_staff %}
+Órdenes
+{% else %}
+Mis Órdenes
+{% endif %}
+| Hexagram Disquería
+{% endblock title %}
+
+{% block contenido %}
+<div class="d-flex mt-4 justify-content-between w-100">
+  <h3 class="fs-4 text-start">
+    {% if request.user.is_staff %}
+    Órdenes
+    {% else %}
+    Mis Órdenes
+    {% endif %}
+  </h3>
+</div>
+<div class="d-flex flex-column align-items-center w-100 h-75 mt-2" style="overflow-y: auto; max-height: 50vh">
+  <table class="table">
+    <tr class="table-dark">
+      {% if request.user.is_staff %}
+      <th>Cliente</th>
+      {% endif %}
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio total</th>
+      <th>Fecha de orden</th>
+      <th>Acciones</th>
+    </tr>
+    {% if not ordenes %}
+    <tr>
+      <td colspan="6" class="bg-light">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path
+              d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+          </svg>
+          Aún no {%if request.user.is_staff%}han{%else%}has{%endif%} realizado ninguna orden.
+        </div>
+      </td>
+    </tr>
+    {% else %}
+    {% for orden in ordenes %}
+    <tr>
+      {% if request.user.is_staff %}
+      <td>{{orden.client.user.first_name}} {{orden.client.user.last_name}}</td>
+      {% endif %}
+      <td>{{orden.product.name}} - {{orden.product.format}} - U$S{{orden.product.price}}</td>
+      <td>{{orden.quantity}}</td>
+      <td>U$S{{orden.total_price}}</td>
+      <td>{{orden.order_date}}</td>
+      <td>
+        <div class="d-flex">
+          <a type=" ubmit" class="btn btn-sm m-0 p-0" href="{% url 'ordenes:order_delete' orden.id %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+            </svg>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </table>
+</div>
+{% endblock contenido %}

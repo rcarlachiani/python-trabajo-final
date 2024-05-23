@@ -4,6 +4,13 @@ from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
 from . import models, forms
 
+class StaffRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_staff
+    
+    def handle_no_permission(self):
+        return redirect('core:home')
+
 def home(request):
     consulta = request.GET.get('consulta')
     if consulta:
@@ -17,13 +24,6 @@ def home(request):
     if 'limpiar' in request.GET:  
         return redirect('catalogo:home')
     return render(request, 'catalogo/index.html', context)
-
-class StaffRequiredMixin(UserPassesTestMixin):
-    def test_func(self):
-        return self.request.user.is_staff
-    
-    def handle_no_permission(self):
-        return redirect('core:home')
 
 class FormatCreate(LoginRequiredMixin, StaffRequiredMixin, CreateView):
   model = models.Format

@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+Orden exitosa | Hexagram Disquería
+{% endblock title %}
+
+{% block contenido %}
+<div class="d-flex flex-column align-items-center gap-4 w-100">
+  <div class="d-flex flex-column align-items-center">
+    <h1 class="mb-5">
+      Orden creada con éxito
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart-check ms-2"
+        viewBox="0 0 16 16">
+        <path
+          d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z" />
+        <path
+          d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+      </svg>
+    </h1>
+    <p class="fs-4 fw-bold mb-5">
+      {{ producto.name }} - {{ producto.format }} <span class="fs-6">(x{{ quantity }}u.)</span>
+    </p>
+    <p class="text-center mb-5">En breve nos comunicaremos a través de alguno de los medios de contacto registrados<br>
+      para proceder con el método de pago y entrega.</p>
+    <p class="fw-bold ">¡Muchas Gracias!</p>
+  </div>
+  <div class="d-flex justify-content-between w-50 gap-3">
+    <div class="d-flex justify-content-start w-50">
+      <a href="{% url 'catalogo:home' %}" type="button" class="btn btn-success w-100">
+        Volver al catálogo
+      </a>
+    </div>
+    <div class="d-flex justify-content-start w-50">
+      <a href="" type=" button" class="btn btn-success w-100">
+        Ir a mis órdenes
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}
