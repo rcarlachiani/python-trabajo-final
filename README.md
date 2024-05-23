@@ -1,4 +1,6 @@
-<h1>🇦🇷 Instrucciones para levantar la app</h1>
+<h1>Alumno: Carlachiani Rodrigo</h1>
+
+<h2>🇦🇷 Instrucciones para levantar la app</h2>
 
 $ git clone
 
@@ -14,12 +16,15 @@ $ source .venv/bin/activate
 <h3>Luego:</h3>
 
 $ pip install -r requirements.txt
+(Si 'pip' no funciona, prueba 'pip3')
 
 $ python manage.py runserver
 
 -------------------------------------------
 
-<h1>🇬🇧 Instructions to run the app</h1>
+<h1>Student: Carlachiani Rodrigo</h1>
+
+<h2>🇬🇧 Instructions to run the app</h2>
 
 $ git clone
 
@@ -35,5 +40,6 @@ $ source .venv/bin/activate
 <h3>Then:</h3>
 
 $ pip install -r requirements.txt
+(If 'pip' doesn't work, try 'pip3')
 
 $ python manage.py runserver
