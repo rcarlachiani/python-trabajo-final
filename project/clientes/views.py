@@ -38,7 +38,7 @@ def home(request):
         return redirect('clientes:home')
     return render(request, 'clientes/index.html', context)
 
-class ClienteDetail(DetailView):
+class ClienteDetail(LoginRequiredMixin, StaffRequiredMixin, DetailView):
   model = models.Client
   context_object_name = 'cliente'
 

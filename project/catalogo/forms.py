@@ -6,7 +6,7 @@ class FormatForm(forms.ModelForm):
         model = models.Format
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'})
+            'name': forms.TextInput(attrs={'class': 'form-control'})
         }
 
 class GenreForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class GenreForm(forms.ModelForm):
         model = models.Genre
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'})
+            'name': forms.TextInput(attrs={'class': 'form-control'})
         }
 
 class ProductForm(forms.ModelForm):
@@ -22,20 +22,12 @@ class ProductForm(forms.ModelForm):
         model = models.Product
         fields = '__all__'
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control mb-2', 'placeholder': 'Nombre'}),
-            'price': forms.TextInput(attrs={
-                'class': 'form-control mb-2', 
-                'placeholder': 'Precio', 
-                'inputmode': 'numeric', 
-            }),
-            'format': forms.Select(choices=models.Format.objects.all(), attrs={'class': 'form-control mb-2'}),
-            'genre': forms.Select(choices=models.Genre.objects.all(), attrs={'class': 'form-control mb-2'}),
-            'stock': forms.TextInput(attrs={
-                'class': 'form-control mb-2', 
-                'placeholder': 'Stock', 
-                'inputmode': 'numeric', 
-            }),
-            'image': forms.FileInput(attrs={'class': 'form-control mb-2'})
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+            'price': forms.NumberInput(attrs={'class': 'form-control mb-2'}),
+            'format': forms.Select(choices=models.Format.objects.all(), attrs={'class': 'form-control'}),
+            'genre': forms.Select(choices=models.Genre.objects.all(), attrs={'class': 'form-control'}),
+            'stock': forms.NumberInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'})
         }
 
     def __init__(self, *args, **kwargs):

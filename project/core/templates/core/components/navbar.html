@@ -29,7 +29,9 @@
           <a class="nav-link" href="{% url 'clientes:home' %}">Clientes</a>
         </li>
         {% endif %}
-        <li class="nav-item"><a class="nav-link" href="">Órdenes</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'ordenes:home' %}">{%if not user.is_staff%}Mis {%endif%}Órdenes</a>
+        </li>
         <li class="nav-item ms-3">
           <div class="dropdown">
             <button class="btn btn-success " type="button" data-bs-toggle="dropdown" aria-expanded="false">
