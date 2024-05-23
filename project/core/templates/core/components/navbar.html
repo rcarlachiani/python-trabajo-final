@@ -46,6 +46,11 @@
             </button>
             <ul class="dropdown-menu">
               <li>
+                {%if not user.is_staff%}
+                <a class="dropdown-item" href="{% url 'clientes:cliente_update' request.user.id %}">
+                  Editar perfil
+                </a>
+                {%endif %}
                 <a class="dropdown-item" href="{% url 'core:logout' %}">Cerrar sesión</a>
               </li>
             </ul>
