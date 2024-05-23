@@ -1,4 +1,5 @@
 from django.core.management.utils import get_random_secret_key
+from django.urls import reverse_lazy
 
 """
 Django settings for config project.
@@ -40,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'cliente',
-    'producto'
+    'catalogo',
+    'clientes',
+    'ordenes',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = reverse_lazy('core:login')
+LOGIN_REDIRECT_URL = reverse_lazy('core:home')
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'

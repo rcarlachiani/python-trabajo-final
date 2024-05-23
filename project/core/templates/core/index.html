@@ -2,13 +2,22 @@
 {% load static %}
 
 {% block contenido %}
-<div class="row gx-4 gx-lg-5 align-items-center my-5">
-  <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/record-store.webp' %}" alt="Imagen de la disquería" /></div>
-    <div class="col-lg-5">
-        <h1 class="font-weight-light">Hexagram Disquería</h1>
-        <p class="mb-2">Disquería especializada en discos de vinilo, cassettes, cd's boxsets, simples y más!</p>
-        <a class="link-danger fw-bold" href="{% url 'producto:home' %}">Visitá el catálogo</a>
-    </div>
+<div class="row gx-4 gx-lg-5 align-items-center">
+  <div class="col-lg-7">
+    <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/record-store.webp' %}"
+      alt="Imagen de la disquería" />
   </div>
+  <div class="col-lg-5">
+    <h1 class="fw-bold">Hexagram Disquería</h1>
+    {% if user.is_staff %}
+    <h2 class="fs-5">Bienvenido al panel de administración,<br>
+      <span class="fst-italic text-success">{{ user.username}}.</span>
+    </h2>
+    {% else %}
+    <p class="mb-2">Disquería especializada en discos de vinilo, cassettes, cd's boxsets, simples y más!</p>
+    <a class="link-danger fw-bold" href="{% url 'catalogo:home' %}">Visitá el catálogo</a>
+    {% endif %}
+  </div>
+</div>
 </div>
 {% endblock contenido %}

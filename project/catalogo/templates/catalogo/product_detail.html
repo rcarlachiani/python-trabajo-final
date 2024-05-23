@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ producto.name }} | Hexagram Disquería
+{% endblock title %}
+
+{% block contenido %}
+<div class="d-flex flex-column align-items-center gap-4 w-100">
+  <div class="d-flex flex-column align-items-center border border-1 rounded-2 w-50 py-4 px-5 shadow-sm bg-light">
+    <h2 class="mb-4 fs-2">{{ producto.name }}</h2>
+    <div class="d-flex w-100 gap-4 justify-content-between">
+      <div class="d-flex flex-column">
+        {% if producto.image %}
+        <img src="{{ producto.image.url }}" alt="Imagen del producto" style="width: 250px; border-radius: 10px;">
+        {% else %}
+        <img src="{% static 'core/img/default-product.webp' %}" alt="Imagen del producto por defecto"
+          style="width: 250px; border-radius: 10px;">
+        {% endif %}
+      </div>
+      <div class="d-flex flex-column w-100">
+        <ul class="list-unstyled">
+          <li class="mb-2"><span class="fw-bold">Precio:</span> U$S{{ producto.price }}</li>
+          <li class="mb-2"><span class="fw-bold">Formato:</span></span> {{ producto.format }}</li>
+          <li class="mb-2"><span class="fw-bold">Género:</span></span> {{ producto.genre }}</li>
+          <li class="mb-2"><span class="fw-bold">Stock:</span"></span> {{ producto.stock }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-start w-50">
+    <a href="{% url 'catalogo:home' %}" type="button" class="btn btn-success w-100">
+      Volver
+    </a>
+  </div>
+</div>
+{% endblock contenido %}

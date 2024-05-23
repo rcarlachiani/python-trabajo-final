@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Editar Cliente | Hexagram Disquería
+{% endblock title %}
+
+{% block contenido %}
+<div class="d-flex flex-column align-items-center border border-1 rounded-2 w-50 p-4 shadow-sm bg-light">
+  <h1 class="fs-3 mb-4">Editar Cliente</h1>
+  <form method="post" class="d-flex flex-column w-100" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="d-flex gap-3">
+      <div class="form-group w-50">
+        <input type="text" name="{{ form.first_name.name }}" class="form-control mb-3"
+          id="{{ form.first_name.id_for_label }}"
+          value="{% if form.instance.pk %} {{ form.instance.first_name }} {% endif %}">
+      </div>
+      <div class="form-group w-50">
+        <input type="text" name="{{ form.last_name.name }}" class="form-control mb-3"
+          id="{{ form.last_name.id_for_label }}"
+          value="{% if form.instance.pk %} {{ form.instance.last_name }} {% endif %}">
+      </div>
+    </div>
+    <div class="d-flex gap-3">
+      <div class="form-group w-50">
+        <input type="date" name="{{ form.birthdate.name }}" class="form-control mb-3"
+          id="{{ form.birthdate.id_for_label }}"
+          value="{% if form.instance.pk %}{{ form.instance.client.birthdate|date:'Y-m-d' }}{% endif %}">
+      </div>
+      <div class="form-group w-50">
+        <input type="text" name="{{ form.phone.name }}" class="form-control mb-3" id="{{ form.phone.id_for_label }}"
+          value="{% if form.instance.pk %} {{ form.instance.client.phone }} {% endif %}">
+      </div>
+    </div>
+    <div class="d-flex gap-3">
+      <div class="form-group w-50">
+        <input type="text" name="{{ form.username.name }}" class="form-control mb-3"
+          id="{{ form.username.id_for_label }}"
+          value="{% if form.instance.pk %} {{ form.instance.username }} {% endif %}"">
+      </div>
+      <div class=" form-group w-50">
+        <input type="text" name="{{ form.email.name }}" class="form-control mb-3" id="{{ form.email.id_for_label }}"
+          value="{% if form.instance.pk %} {{ form.instance.email }} {% endif %}">
+      </div>
+    </div>
+    <div class="d-flex gap-3">
+      <div class="form-group w-50">
+        <input type="password" name="{{ form.password.name }}" class="form-control"
+          id="{{ form.password.id_for_label }}" placeholder="Introduzca la nueva contraseña">
+        <div id="dateHelp" class="form-text">Si no cambia la contraseña, persiste la establecida en el registro.</div>
+      </div>
+      <div class="form-group w-50">
+        <input type="file" name="{{ form.avatar.name }}" class="form-control" id="{{ form.avatar.id_for_label }}">
+        <div id="dateHelp" class="form-text">Si no carga un nuevo avatar, persiste el cargado en el registro.</div>
+      </div>
+    </div>
+    {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {% for field in form %}
+      {% for error in field.errors %}
+      <p class="mb-2 lh-sm">*{{ error }}</p>
+      {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+      <p class="mb-0 lh-sm">*{{ error }}</p>
+      {% endfor %}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <div class="d-flex justify-content-center gap-3">
+      <button type="submit" class="btn btn-success w-50 mt-4 d-flex justify-content-center align-items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle"
+          viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+          <path
+            d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05" />
+        </svg>
+        Confirmar
+      </button>
+      <a href="{% url 'clientes:home' %}" type="button"
+        class="btn btn-danger w-50 mt-4 d-flex justify-content-center align-items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle"
+          viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+        </svg>
+        Cancelar
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Nosotros | Hexagram Disquería{% endblock title %}
+
+{% block contenido %}
+<div class="row gx-4 gx-lg-5 align-items-center">
+  <div class="col-lg-7">
+    <h1 class="fw-bold fs-3 mb-3">Nosotros</h1>
+    <p class="fs-6 lh-sm">
+      Bienvenidos a Hexagram Disquería, fruto del proyecto final del curso de Python de Coderhouse, creado por Rodrigo
+      Carlachiani; un amante de la música y estudiante en formación que ha combinado su amor por los discos y su
+      interés en la tecnología para dar vida a esta plataforma. Su objetivo principal es proporcionar un espacio donde
+      los amantes de la música puedan descubrir tesoros sonoros y conectar con la rica historia de cada artista.
+      <br><br>
+      En Hexagram Disquería, creemos en la magia de la música en formato físico.
+      Nos esforzamos por ofrecer una selección curada de productos de alta calidad, desde ediciones clásicas hasta
+      lanzamientos contemporáneos, satisfaciendo así tanto a coleccionistas apasionados como a nuevos aficionados.
+      <br><br>
+      Acompáñanos en este viaje musical y descubre por qué los formatos físicos siguen siendo una parte esencial de la
+      experiencia auditiva.
+    </p>
+    <a class="link-danger fw-bold" href="{% url 'catalogo:home' %}">Visitá el catálogo</a>
+  </div>
+  <div class="col-lg-5">
+    <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'core/img/hexagram-logo.webp' %}"
+      alt="Logo de la disquería" />
+  </div>
+</div>
+</div>
+{% endblock contenido %}
