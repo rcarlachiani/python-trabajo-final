@@ -2,7 +2,7 @@
 
 La app consiste en una disquería virtual en donde podremos acceder a ella como administrador, o como cliente.
 
-Demo: https://www.youtube.com/watch?v=F6EdjRW6CbE
+Demo: [https://www.youtube.com/watch?v=F6EdjRW6CbE](https://www.youtube.com/watch?v=3cPxkNIPN-w)
 
 Funcionalidades cliente:
 
