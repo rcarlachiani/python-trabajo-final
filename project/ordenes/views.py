@@ -40,6 +40,6 @@ def create_order(request, pk):
     except ValidationError:
         return render(request, 'catalogo/product_detail.html', {'producto': product, 'error_message': 'La cantidad solicitada supera el stock disponible.'})
     
-class OrderDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class OrderDelete(LoginRequiredMixin, DeleteView):
   model = models.Order
   success_url = reverse_lazy('ordenes:home')
