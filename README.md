@@ -1,45 +1,51 @@
-<h1>Alumno: Carlachiani Rodrigo</h1>
+<h2>Carlachiani Rodrigo - Proyecto Final - Python #54135</h2>
 
-<h2>🇦🇷 Instrucciones para levantar la app</h2>
+La app consiste en una disquería virtual en donde podremos acceder a ella como administrador, o como cliente.
 
-$ git clone
+Funcionalidades cliente:
 
-$ python -m venv .venv <br>
+- Registrar cliente/usuario
+- Realizar el login del usuario
+- Editar el perfil cliente/usuario
+- Ver el catálogo de productos
+- Ver el detalle de los productos
+- Generar órdenes de compra
+- Dar de baja órdenes de compra
+- Visualizar órdenes de compra asociadas al cliente/usuario
+
+Funcionalidades administrador:
+
+- Realizar el login del usuario
+- Ver el listado de clientes/usuarios
+- Ver el detalle de un cliente/usuario
+- Editar cliente/usuario
+- Ver el catálogo de productos
+- Agregar formatos de discos
+- Agregar géneros musicales
+- Agregar productos
+- Editar productos
+- Eliminar productos
+- Ver el detalle de los productos
+- Dar de baja órdenes de compra
+- Visualizar todas las órdenes de compra
+
+Se encuentra creado el usuario administrador, el cual es:
+
+- User: admin
+- Pass: admin2024
+
+Y un usuario cliente:
+
+- User: user
+- Pass: coder2024
+
+<h2>Instrucciones para levantar la app</h2>
+
+- $ git clone
+- $ python -m venv .venv <br>
 (Si 'python' no funciona, prueba 'python3')
-
-<h3>En Windows:</h3>
-$ .\venv\Scripts\activate
-
-<h3>En Linux/macOs:</h3>
-$ source .venv/bin/activate
-
-<h3>Luego:</h3>
-
-$ pip install -r requirements.txt
+- $ .\venv\Scripts\activate (Windows)
+- $ source .venv/bin/activate (Linux/macOs)
+- $ pip install -r requirements.txt
 (Si 'pip' no funciona, prueba 'pip3')
-
-$ python manage.py runserver
-
--------------------------------------------
-
-<h1>Student: Carlachiani Rodrigo</h1>
-
-<h2>🇬🇧 Instructions to run the app</h2>
-
-$ git clone
-
-$ python -m venv .venv <br>
-(If 'python' doesn't work, try 'python3')
-
-<h3>On Windows:</h3>
-$ .\venv\Scripts\activate
-
-<h3>On Linux/macOs:</h3>
-$ source .venv/bin/activate
-
-<h3>Then:</h3>
-
-$ pip install -r requirements.txt
-(If 'pip' doesn't work, try 'pip3')
-
-$ python manage.py runserver
+- $ python manage.py runserver
