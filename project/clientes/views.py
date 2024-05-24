@@ -60,8 +60,9 @@ class ClientUpdate(LoginRequiredMixin, UpdateView):
             user.set_password(new_password)
         user.save()
 
-        login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
-        update_session_auth_hash(self.request, user) 
+        if not self.request.user.is_staff:
+            login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
+            update_session_auth_hash(self.request, user) 
 
         return super().form_valid(form)
     
