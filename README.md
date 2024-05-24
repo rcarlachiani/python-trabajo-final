@@ -50,4 +50,5 @@ Y un usuario cliente:
 - $ source .venv/bin/activate (Linux/macOs)
 - $ pip install -r requirements.txt
 (Si 'pip' no funciona, prueba 'pip3')
+- $ cd project
 - $ python manage.py runserver
